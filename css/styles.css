@@ -29,7 +29,18 @@ width: 80%;
   margin: 10px;
 }
 
+.closeBtn{
+  display: none;
+  position: fixed;
+  fill: black;
+  top:0;
+  right:0;
+  margin: 15px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
 
+}
 
 
 

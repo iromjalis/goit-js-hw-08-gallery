@@ -45,4 +45,10 @@ export default [
     original: "https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg",
     description: "Lighthouse Coast Sea",
   },
+
+  {
+    preview: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsaDMsFeDTcJlSu4oNH3MX5QdJKabUcZAxPg&usqp=CAU",
+    original: "https://cdn0.wideopenpets.com/wp-content/uploads/2019/08/Pet-Raccoons.png",
+    description: "Raccoon",
+  },
 ];

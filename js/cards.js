@@ -1,11 +1,19 @@
 import gallery from "./gallery-items.js";
 
 const listEl = document.createElement("ul");
-listEl.classList.add("cars-list");
+listEl.classList.add("js-gallery");
 document.body.prepend(listEl);
 
 const modalImgRef = document.querySelector(".modal-img");
 const modalRef = document.querySelector(".modal");
+let closeBtn = ` <button type="button" class="closeBtn" > x
+<svg class=""  width="24" height="18" aria-label="Закрытие модального окна">
+  <use class="closeBtnSvg" width="24" height="16" href="./images/icon-close.svg"></use></svg></button>`;
+modalRef.insertAdjacentHTML("beforebegin", closeBtn);
+// const galleryItemRef = document.querySelector(".gallery__item");
+// const galleryImgRef = document.querySelector(".gallery__image");
+const buttonRef = document.getElementsByTagName("button");
+buttonRef.hidden = "true";
 
 const markup = gallery
   .map(
@@ -18,26 +26,34 @@ const markup = gallery
 
 listEl.innerHTML = markup;
 
-const cardRef = document.querySelector(".gallery__item");
-const imgRef = document.querySelector(".gallery__image");
-
-cardRef.addEventListener("click", (e) => {
+listEl.addEventListener("click", (e) => {
   e.preventDefault();
 
-  modalImgRef.src = imgRef.dataset.source;
-  modalImgRef.alt = imgRef.alt;
-  console.dir(e);
-  if (e.currentTarget === cardRef) {
-    // imgRef.src = imgRef.dataset.source;
+  if (e.target.localName === "img") {
+    modalImgRef.src = e.target.dataset.source;
+    modalImgRef.alt = e.target.alt;
 
     modalRef.style.display = "block";
-
-    console.log(e.target);
+    document.querySelector(".closeBtn").style.display = "block";
   }
 });
-modalRef.addEventListener("keypress", function (e) {
-  console.dir(e.target);
-  if (e.keydown === 27) document.getElementById("modal_id").hidden = 1;
+
+window.addEventListener("keyup", (e) => {
+  if (
+    e.key === "Escape" ||
+    e.key === "ArrowRight" ||
+    e.key === "ArrowLeft" ||
+    e.key === "ArrowUp" ||
+    e.key === "ArrowDown"
+  ) {
+    modalRef.style.display = "none";
+    document.querySelector(".closeBtn").style.display = "none";
+  }
 });
 
-// imgRef.src = "https://cdn0.wideopenpets.com/wp-content/uploads/2019/08/Pet-Raccoons.png";
+window.addEventListener("click", (e) => {
+  if (e.target.localName !== "img") {
+    modalRef.style.display = "none";
+    document.querySelector(".closeBtn").style.display = "none";
+  }
+});

@@ -2,7 +2,9 @@ body{
   position: relative;
   margin: 0;
 }
-
+ul{
+ list-style: none;
+}
 .modal{
   position: fixed;
   transform: translate(-50%, -50%);
@@ -20,9 +22,12 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-width: 150px;
+width: 80%;
 }
-
+.gallery__item{
+  display: inline-block;
+  margin: 10px;
+}
 
 
 

@@ -46,9 +46,9 @@ export default [
     description: "Lighthouse Coast Sea",
   },
 
-  {
-    preview: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsaDMsFeDTcJlSu4oNH3MX5QdJKabUcZAxPg&usqp=CAU",
-    original: "https://cdn0.wideopenpets.com/wp-content/uploads/2019/08/Pet-Raccoons.png",
-    description: "Raccoon",
-  },
+  // {
+  //   preview: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsaDMsFeDTcJlSu4oNH3MX5QdJKabUcZAxPg&usqp=CAU",
+  //   original: "https://cdn0.wideopenpets.com/wp-content/uploads/2019/08/Pet-Raccoons.png",
+  //   description: "Raccoon",
+  // },
 ];

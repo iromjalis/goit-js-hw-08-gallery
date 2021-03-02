@@ -1,19 +1,12 @@
 import gallery from "./gallery-items.js";
 
-const listEl = document.createElement("ul");
-listEl.classList.add("js-gallery");
-document.body.prepend(listEl);
-
-const modalImgRef = document.querySelector(".modal-img");
-const modalRef = document.querySelector(".modal");
-let closeBtn = ` <button type="button" class="closeBtn" > x
-<svg class=""  width="24" height="18" aria-label="Закрытие модального окна">
-  <use class="closeBtnSvg" width="24" height="16" href="./images/icon-close.svg"></use></svg></button>`;
-modalRef.insertAdjacentHTML("beforebegin", closeBtn);
+const galleryListRef = document.querySelector(".js-gallery");
 // const galleryItemRef = document.querySelector(".gallery__item");
-// const galleryImgRef = document.querySelector(".gallery__image");
-const buttonRef = document.getElementsByTagName("button");
-buttonRef.hidden = "true";
+
+const modalImgRef = document.querySelector(".lightbox__image");
+const modalRef = document.querySelector(".lightbox__overlay");
+
+const buttonRef = document.querySelector(".lightbox__button");
 
 const markup = gallery
   .map(
@@ -24,9 +17,9 @@ const markup = gallery
   )
   .join("");
 
-listEl.innerHTML = markup;
+galleryListRef.innerHTML = markup;
 
-listEl.addEventListener("click", (e) => {
+galleryListRef.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (e.target.localName === "img") {
@@ -34,7 +27,8 @@ listEl.addEventListener("click", (e) => {
     modalImgRef.alt = e.target.alt;
 
     modalRef.style.display = "block";
-    document.querySelector(".closeBtn").style.display = "block";
+    modalImgRef.style.display = "block";
+    buttonRef.style.display = "block";
   }
 });
 
@@ -47,13 +41,15 @@ window.addEventListener("keyup", (e) => {
     e.key === "ArrowDown"
   ) {
     modalRef.style.display = "none";
-    document.querySelector(".closeBtn").style.display = "none";
+    modalImgRef.style.display = "none";
+    buttonRef.style.display = "none";
   }
 });
 
 window.addEventListener("click", (e) => {
   if (e.target.localName !== "img") {
     modalRef.style.display = "none";
-    document.querySelector(".closeBtn").style.display = "none";
+    modalImgRef.style.display = "none";
+    buttonRef.style.display = "none";
   }
 });

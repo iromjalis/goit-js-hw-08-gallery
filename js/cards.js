@@ -28,13 +28,7 @@ const onOpenModalClick = (e) => {
 };
 
 const onKeyboardClick = (e) => {
-  if (
-    e.key === "Escape" ||
-    e.key === "ArrowRight" ||
-    e.key === "ArrowLeft" ||
-    e.key === "ArrowUp" ||
-    e.key === "ArrowDown"
-  ) {
+  if (e.key === "Escape") {
     modalRef.classList.remove("is-open");
   }
 };
@@ -42,13 +36,12 @@ const onKeyboardClick = (e) => {
 const onCloseModalClick = (e) => {
   if (e.target.localName !== "img") {
     modalRef.classList.remove("is-open");
+
+    modalImgRef.src = "";
+    modalImgRef.alt = "";
   }
 };
 
 galleryListRef.addEventListener("click", onOpenModalClick);
 window.addEventListener("keyup", onKeyboardClick);
 window.addEventListener("click", onCloseModalClick);
-buttonRef.addEventListener("click", onCloseModalClick);
-// buttonRef.addEventListener("click", (e) => {
-//   modalRef.classList.remove("is-open");
-// });

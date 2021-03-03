@@ -1,11 +1,8 @@
 import gallery from "./gallery-items.js";
 
 const galleryListRef = document.querySelector(".js-gallery");
-// const galleryItemRef = document.querySelector(".gallery__item");
-
 const modalImgRef = document.querySelector(".lightbox__image");
-const modalRef = document.querySelector(".lightbox__overlay");
-
+const modalRef = document.querySelector(".lightbox");
 const buttonRef = document.querySelector(".lightbox__button");
 
 const markup = gallery
@@ -19,20 +16,18 @@ const markup = gallery
 
 galleryListRef.innerHTML = markup;
 
-galleryListRef.addEventListener("click", (e) => {
+const onOpenModalClick = (e) => {
   e.preventDefault();
 
   if (e.target.localName === "img") {
     modalImgRef.src = e.target.dataset.source;
     modalImgRef.alt = e.target.alt;
 
-    modalRef.style.display = "block";
-    modalImgRef.style.display = "block";
-    buttonRef.style.display = "block";
+    modalRef.classList.add("is-open");
   }
-});
+};
 
-window.addEventListener("keyup", (e) => {
+const onKeyboardClick = (e) => {
   if (
     e.key === "Escape" ||
     e.key === "ArrowRight" ||
@@ -40,16 +35,20 @@ window.addEventListener("keyup", (e) => {
     e.key === "ArrowUp" ||
     e.key === "ArrowDown"
   ) {
-    modalRef.style.display = "none";
-    modalImgRef.style.display = "none";
-    buttonRef.style.display = "none";
+    modalRef.classList.remove("is-open");
   }
-});
+};
 
-window.addEventListener("click", (e) => {
+const onCloseModalClick = (e) => {
   if (e.target.localName !== "img") {
-    modalRef.style.display = "none";
-    modalImgRef.style.display = "none";
-    buttonRef.style.display = "none";
+    modalRef.classList.remove("is-open");
   }
-});
+};
+
+galleryListRef.addEventListener("click", onOpenModalClick);
+window.addEventListener("keyup", onKeyboardClick);
+window.addEventListener("click", onCloseModalClick);
+buttonRef.addEventListener("click", onCloseModalClick);
+// buttonRef.addEventListener("click", (e) => {
+//   modalRef.classList.remove("is-open");
+// });
